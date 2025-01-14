@@ -10,6 +10,8 @@ import {
 
 } from "firebase/auth";
 
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
 // create context:
 const FirebaseContext = createContext(null);
 
@@ -29,11 +31,11 @@ const firebaseConfig = {
 // custom firebase hook:
 export const useFirebase = () => useContext(FirebaseContext);
 
-// firbase app instance:
+// app instance:
 const firebaseApp = initializeApp(firebaseConfig);
-
-// auth instance:
 const firebaseAuth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
+
 
 // googleProvider instance:
 const googleProvider= new GoogleAuthProvider();
@@ -72,6 +74,20 @@ export const FirebaseProvider = (props) => {
     // isLoggedIn ??
     const isLoggedIn = user ? true: false;
 
+    // handleCreateNewLisiting:
+    const handleCreateNewLisiting = async (name, isbn, price) => {
+        return await addDoc(collection(firestore, 'books'), {
+            name,
+            isbn,
+            price,
+            imgUrl: 'https://t3.ftcdn.net/jpg/00/28/90/20/360_F_28902059_Kv9y7FKcnkZY6ho7tfSq4YxPm1oq0U4B.jpg',
+            userId: user.uid,
+            userEmail: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+        });
+    }
+
 
     return(
         <FirebaseContext.Provider 
@@ -80,6 +96,7 @@ export const FirebaseProvider = (props) => {
             signinUserWithEmailAndPassword,
             signinWithGoogle,
             isLoggedIn,
+            handleCreateNewLisiting,
         }}
         >
             {props.children}
