@@ -17,7 +17,6 @@ const Home = () => {
   }, []);
 
 
-
   if(!firebase.isLoggedIn){
     return (
       <div className='w-full h-screen flex items-center justify-center'>
@@ -47,7 +46,6 @@ const Home = () => {
     )
   }
 
-
   return (
     <div>
 
@@ -58,14 +56,15 @@ const Home = () => {
             books.map((book) => (
               <Card 
               key={book.id}
+              id={book.id}
               name={book.data().name}
               isbn={book.data().isbn}
               seller={book.data().displayName}
+              email={book.data().userEmail}
               price={book.data().price}
               />
             ))
           }
-        
         </div>
 
 

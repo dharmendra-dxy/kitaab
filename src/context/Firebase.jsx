@@ -11,7 +11,7 @@ import {
 
 } from "firebase/auth";
 
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs,getDoc, doc } from "firebase/firestore";
 
 
 // create context:
@@ -100,6 +100,13 @@ export const FirebaseProvider = (props) => {
         return getDocs(collection(firestore, 'books'));
     }
 
+    // getBookById:
+    const getBookById = async(id) => {
+        const docRef = doc(firestore, 'books', id);
+        const result = await getDoc(docRef);
+        return result;
+    }
+
 
     return(
         <FirebaseContext.Provider 
@@ -111,6 +118,7 @@ export const FirebaseProvider = (props) => {
             handleCreateNewLisiting,
             listAllBooks,
             signoutUser,
+            getBookById,
         }}
         >
             {props.children}
