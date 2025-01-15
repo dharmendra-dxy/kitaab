@@ -8,11 +8,19 @@ const BookDetail = () => {
     const {bookId} = useParams();
 
     const [data, setData] = useState(null);
-
+    const [quantity, setQuantity] = useState("");
 
     useEffect(()=>{
         firebase.getBookById(bookId).then((val) => setData(val.data()));
     }, []);
+
+    // hanldePlaceOrder:
+    const hanldePlaceOrder = async () => {
+       const result = await firebase.placeBookOrder(bookId, quantity);
+       console.log("Order placed: ", result);
+       setQuantity("");
+       alert("Book has been ordered succefully");
+    }
 
     if(data==null) return (
         <div className='w-full h-screen flex items-center justify-center'>
@@ -22,7 +30,7 @@ const BookDetail = () => {
 
   return (
     <div className='max-container md:mt-10 mt-2'>
-        <h1 className='text-center font-bold text-4xl'>{data.name}</h1>
+        <h1 className='text-center font-bold text-4xl'>{data.name} <span className='text-violet-500'>Kitaab</span></h1>
 
         <div className='mt-10 flex flex-wrap gap-10 '>
             <div>
@@ -49,9 +57,21 @@ const BookDetail = () => {
                     <p> <span className='text-xl text-violet-500 font-bold'>Price</span> Rs.{data.price} </p>
                 </div>
 
-                <button className='bg-violet-500 px-4 py-2 rounded-lg text-white hover:bg-violet-700'>
-                    Buy Book
-                </button>
+                <div>
+                    <input 
+                    type='number'
+                    value={quantity} 
+                    onChange={(e)=> setQuantity(e.target.value)}
+                    placeholder='Select Book Quantity...'
+                    className='w-full px-4 py-2 border border-black rounded-lg mb-4'
+                    />
+
+                    <button className='bg-violet-500 px-4 py-2 rounded-lg text-white hover:bg-violet-700 w-full'
+                    onClick={hanldePlaceOrder}
+                    >
+                        Buy Book
+                    </button>
+                </div>
             </div>
         </div>
         

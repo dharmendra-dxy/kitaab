@@ -6,8 +6,6 @@ const Card = ({name, isbn, seller, email, price, id}) => {
 
   const nav = useNavigate();
 
-
-
   return (
     <div className=' w-full border max-w-sm border-black  rounded-lg '>
         <div className='flex items-center justify-center'>

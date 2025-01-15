@@ -11,7 +11,17 @@ import {
 
 } from "firebase/auth";
 
-import { getFirestore, collection, addDoc, getDocs,getDoc, doc } from "firebase/firestore";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs,
+    getDoc, 
+    doc,
+    query,
+    where,
+
+} from "firebase/firestore";
 
 
 // create context:
@@ -38,7 +48,6 @@ const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
 
-
 // googleProvider instance:
 const googleProvider= new GoogleAuthProvider();
 
@@ -54,9 +63,11 @@ export const FirebaseProvider = (props) => {
             console.log("user: ", user);
             if(user) setUser(user);
             else setUser(null);
-        })
-    }, [])
+        });
+    }, []);
 
+    // isLoggedIn ??
+    const isLoggedIn = user ? true: false;
 
     // signupUserWithEmailAndPassword:
     const signupUserWithEmailAndPassword = (email, password) => {
@@ -77,9 +88,6 @@ export const FirebaseProvider = (props) => {
     const signoutUser = () => {
         signOut(firebaseAuth);
     }
-
-    // isLoggedIn ??
-    const isLoggedIn = user ? true: false;
 
     // handleCreateNewLisiting:
     const handleCreateNewLisiting = async (name, isbn, price) => {
@@ -107,6 +115,32 @@ export const FirebaseProvider = (props) => {
         return result;
     }
 
+    // placeBookOrder:
+    const placeBookOrder = async (bookId, quantity) => {
+        const collectionRef = collection(firestore, 'books', bookId, 'orders');
+        const result = await addDoc(collectionRef, {
+            userId: user.uid,
+            userEmail: user.email,
+            displayName: user.displayName,
+            quantity: Number(quantity),
+        });
+        return result;
+    }
+
+    // fetchMyBooks: 
+    const fetchMyBooks = async (userId) => {
+        const collectionRef = collection(firestore, 'books');
+        const q = query(collectionRef, where("userId", "==", userId));
+        const result = await getDocs(q);
+        return result;
+    }
+
+    // getBookOrderByBookId:
+    const getBookOrder = async (bookId) => {
+        const collectionRef = collection(firestore, 'books', bookId, 'orders');
+        const result = await getDocs(collectionRef);
+        return result;
+    }
 
     return(
         <FirebaseContext.Provider 
@@ -114,11 +148,15 @@ export const FirebaseProvider = (props) => {
             signupUserWithEmailAndPassword, 
             signinUserWithEmailAndPassword,
             signinWithGoogle,
-            isLoggedIn,
             handleCreateNewLisiting,
             listAllBooks,
             signoutUser,
             getBookById,
+            placeBookOrder,
+            fetchMyBooks,
+            getBookOrder,
+            isLoggedIn,
+            user,
         }}
         >
             {props.children}

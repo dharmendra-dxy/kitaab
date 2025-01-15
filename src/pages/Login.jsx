@@ -20,7 +20,6 @@ const Login = () => {
         console.log(email, password)
         e.preventDefault();
         const data = await firebase.signinUserWithEmailAndPassword(email, password);
-        console.log(data);
 
         setEmail('');
         setPassword('');

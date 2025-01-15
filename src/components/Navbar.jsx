@@ -9,7 +9,8 @@ const Navbar = () => {
 
     const navLinks = [
         {name : "Home",  links: '/'},
-        {name : "Add Listing",  links: '/list'},
+        {name : "Add Listing",  links: '/book/list'},
+        {name : "My Books",  links: '/book/mybooks'},
     ];
 
     // handleUserSignout:
@@ -28,9 +29,12 @@ const Navbar = () => {
                     {
                         navLinks.map((item) => (
                             <p 
+                            key={item.name}
                             onClick={()=> nav(`${item.links}`)}
                             className='cursor-pointer hover:border-b-2'
-                            > {item.name} </p>
+                            > 
+                            {item.name} 
+                            </p>
                         ))
                     }
                 </div>

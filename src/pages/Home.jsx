@@ -51,7 +51,14 @@ const Home = () => {
 
         <Navbar/>
 
+        <div className='text-center mt-5'>
+          <h1 className='text-lg'>Hi, 
+            <span className='font-bold text-violet-600'> {firebase.user.email}</span>
+          </h1>
+        </div>
+
         <div className='w-full max-container flex items-center justify-center gap-10 mt-10 flex-wrap'>
+
           {
             books.map((book) => (
               <Card 
