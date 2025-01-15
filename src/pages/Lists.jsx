@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useFirebase } from '../context/firebase';
+import { useNavigate } from 'react-router';
 
 const Lists = () => {
 
     const firebase = useFirebase();
+    const nav = useNavigate();
 
     const [name, setName] = useState('');
     const [isbnNumber, setIsbnNumber] = useState('');
@@ -13,11 +15,15 @@ const Lists = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data= await firebase.handleCreateNewLisiting(name, isbnNumber, price);
-        console.log("book: ", data);
+
+        setName("");
+        setIsbnNumber("");
+        setPrice("");
+        nav('/');
     }
 
   return (
-    <div className='w-full h-screen bg-violet-500 text-white'>
+    <div className='w-full h-screen bg-gradient-to-br from-violet-500 to-violet-900 text-white'>
         <div className='max-container px-4 py-4'>
 
             <h1 className='text-4xl font-bold uppercase mt-6'>Book Details </h1>
@@ -30,7 +36,7 @@ const Lists = () => {
                     placeholder='eg. 50 Rules of money making'
                     value={name}
                     onChange={(e)=> setName(e.target.value)}
-                    className='px-4 py-2 rounded-lg border-none text-gray-400'
+                    className='px-4 py-2 rounded-lg border-none text-black'
                     />
                 </div>
                 <div className='flex flex-col justify-center gap-2'>
@@ -40,7 +46,7 @@ const Lists = () => {
                     placeholder='eg. 123423467'
                     value={isbnNumber}
                     onChange={(e)=> setIsbnNumber(e.target.value)}
-                    className='px-4 py-2 rounded-lg border-none text-gray-400'
+                    className='px-4 py-2 rounded-lg border-none text-black'
                     />
                 </div>
                 <div className='flex flex-col justify-center gap-2'>
@@ -50,7 +56,7 @@ const Lists = () => {
                     placeholder='eg. 500rs'
                     value={price}
                     onChange={(e)=> setPrice(e.target.value)}
-                    className='px-4 py-2 rounded-lg border-none text-gray-400'
+                    className='px-4 py-2 rounded-lg border-none text-black'
                     />
                 </div>
 

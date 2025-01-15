@@ -1,14 +1,21 @@
 import React from 'react'
+import { useFirebase } from '../context/firebase';
 import { useNavigate } from 'react-router';
 
 const Navbar = () => {
 
+    const fireabse = useFirebase();
     const nav = useNavigate();
 
     const navLinks = [
         {name : "Home",  links: '/'},
         {name : "Add Listing",  links: '/list'},
     ];
+
+    // handleUserSignout:
+    const handleUserSignout = ()=> {
+        return fireabse.signoutUser();
+    }
 
   return (
     <div className='w-full bg-violet-500 '>
@@ -30,9 +37,11 @@ const Navbar = () => {
             </div>
 
             <div>   
-                    <button className='bg-white text-violet-500 px-4 py-2 outline-none rounded-lg font-bold hover:text-white hover:border hover:border-white hover:bg-violet-500'>
-                        Logout
-                    </button>
+                <button className='bg-white text-violet-500 px-4 py-2 outline-none rounded-lg font-bold hover:text-white hover:border hover:border-white hover:bg-violet-500'
+                onClick={handleUserSignout}
+                >
+                    Logout
+                </button>
             </div>
         </div>
 

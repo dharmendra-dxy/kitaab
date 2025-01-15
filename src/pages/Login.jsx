@@ -38,7 +38,7 @@ const Login = () => {
     <div className='h-screen w-screen flex items-center justify-center'>
 
         {/* left */}
-        <div className='h-full w-[50%] bg-gradient-to-br from-red-600  to-black hidden lg:block'>
+        <div className='h-full w-[50%] bg-gradient-to-br from-red-500  to-black hidden lg:block'>
             <div className='flex flex-col flex-1 justify-center items-center h-full gap-10 max-container'>
                 <h1 className='text-5xl text-white font-bold'>Welcome to Login</h1>
 

@@ -7,10 +7,12 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     onAuthStateChanged,
+    signOut,
 
 } from "firebase/auth";
 
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+
 
 // create context:
 const FirebaseContext = createContext(null);
@@ -71,6 +73,11 @@ export const FirebaseProvider = (props) => {
         return signInWithPopup(firebaseAuth, googleProvider);
     }
 
+    // signourUser:
+    const signoutUser = () => {
+        signOut(firebaseAuth);
+    }
+
     // isLoggedIn ??
     const isLoggedIn = user ? true: false;
 
@@ -88,6 +95,11 @@ export const FirebaseProvider = (props) => {
         });
     }
 
+    // list all books:
+    const listAllBooks = () => {
+        return getDocs(collection(firestore, 'books'));
+    }
+
 
     return(
         <FirebaseContext.Provider 
@@ -97,6 +109,8 @@ export const FirebaseProvider = (props) => {
             signinWithGoogle,
             isLoggedIn,
             handleCreateNewLisiting,
+            listAllBooks,
+            signoutUser,
         }}
         >
             {props.children}
