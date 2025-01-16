@@ -16,6 +16,8 @@ const Lists = () => {
         e.preventDefault();
         const data= await firebase.handleCreateNewLisiting(name, isbnNumber, price);
 
+        alert("Bookd listed Succesfully");
+
         setName("");
         setIsbnNumber("");
         setPrice("");
@@ -26,7 +28,7 @@ const Lists = () => {
     <div className='w-full h-screen bg-gradient-to-br from-violet-500 to-violet-900 text-white'>
         <div className='max-container px-4 py-4'>
 
-            <h1 className='text-4xl font-bold uppercase mt-6'>Book Details </h1>
+            <h1 className='text-4xl font-bold uppercase mt-6'>Add Book Details </h1>
 
             <form className='flex flex-col gap-5 pt-10'>
                 <div className='flex flex-col justify-center gap-2'>
