@@ -13,7 +13,7 @@ const MyBookCard = ({bookId, name, isbn, price}) => {
         <p className='mt-2 font-semibold text-md'>Price: Rs. {price}</p>
         <button 
         className='bg-violet-500 px-4 py-2 rounded-lg text-white mt-2 hover:bg-violet-800'
-        onClick={()=> nav(`/book/mybooks/${bookId}}`)}
+        onClick={()=> nav(`/book/mybooks/${bookId}`)}
         >
             Check Orders Details
             </button>

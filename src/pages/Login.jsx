@@ -43,7 +43,7 @@ const Login = () => {
 
                 <p className='text-lg text-white font-semibold'>Don't have an account ? SignUp</p>
 
-                <button className='border border-white px-6 py-2 rounded-lg text-white hover:border-gray-500'
+                <button className='border border-white px-6 py-2 rounded-lg text-white hover:border-gray-500 hover:bg-white hover:text-black'
                 onClick={()=> navigate('/signup')}
                 >
                     Signup
@@ -82,7 +82,7 @@ const Login = () => {
                     </div>
 
 
-                    <button className='text-white bg-red-500 w-full rounded-lg px-4 py-2 font-semibold'
+                    <button className='text-white bg-red-500 w-full rounded-lg px-4 py-2 font-semibold hover:bg-red-700'
                     onClick={handleSubmit}
                     >
                         Login

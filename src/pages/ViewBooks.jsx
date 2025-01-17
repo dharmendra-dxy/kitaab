@@ -34,9 +34,7 @@ const ViewBooks = () => {
             <span className='text-violet-500 font-semibold'>Click</span> to Add a book
           </div>
         </div>
-        
-      
-      ) : (<div></div>)
+        ) :(<></>)
       }
 
       <div className='flex flex-col flex-wrap items-center justify-center gap-10 mt-5'>

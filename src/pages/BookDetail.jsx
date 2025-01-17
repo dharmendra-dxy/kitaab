@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useFirebase } from '../context/firebase';
+import { useNavigate } from 'react-router';
 
 const BookDetail = () => {
 
+    const nav = useNavigate();
     const firebase = useFirebase();
     const {bookId} = useParams();
 
@@ -20,6 +22,7 @@ const BookDetail = () => {
        console.log("Order placed: ", result);
        setQuantity("");
        alert("Book has been ordered succefully");
+       nav('/');
     }
 
     if(data==null) return (
@@ -30,7 +33,7 @@ const BookDetail = () => {
 
   return (
     <div className='max-container md:mt-10 mt-2'>
-        <h1 className='text-center font-bold text-4xl'>{data.name} <span className='text-violet-500'>Kitaab</span></h1>
+        <h1 className='text-center font-bold text-4xl mt-4'>{data.name} <span className='text-violet-500'>Kitaab</span></h1>
 
         <div className='mt-10 flex flex-wrap gap-10 '>
             <div>

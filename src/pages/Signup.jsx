@@ -70,7 +70,7 @@ const Signup = () => {
                     </div>
 
 
-                    <button className='text-white bg-green-500 w-full rounded-lg px-4 py-2 font-semibold'
+                    <button className='text-white bg-green-500 w-full rounded-lg px-4 py-2 font-semibold hover:bg-green-700'
                     onClick={handleSubmit}
                     >
                         Create Account
@@ -92,7 +92,7 @@ const Signup = () => {
 
                 <p className='text-lg text-white font-semibold'>Already have an account ? LogIn</p>
 
-                <button className='border border-white px-6 py-2 rounded-lg text-white hover:border-gray-500'
+                <button className='border border-white px-6 py-2 rounded-lg text-white hover:border-gray-500 hover:text-black hover:bg-white'
                 onClick={()=> navigate('/login')}
                 >
                     Login

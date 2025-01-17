@@ -12,7 +12,7 @@ const GoogleBtn = ({text, bgColor}) => {
 
 
   return (
-    <button className={`text-white ${bgColor} w-full rounded-lg px-4 py-2 font-semibold shadow-lg shadow-slate-400`}
+    <button className={`text-white ${bgColor} w-full rounded-lg px-4 py-2 font-semibold shadow-lg shadow-slate-400 hover:bg-black hover:text-white`}
     onClick={handleSubmit}
     >
         {text}
