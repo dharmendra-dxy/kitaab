@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useFirebase } from '../context/firebase';
+import { useFirebase } from '../context/Firebase.jsx';
 import GoogleBtn from '../components/GoogleBtn';
 import { useNavigate } from 'react-router';
 

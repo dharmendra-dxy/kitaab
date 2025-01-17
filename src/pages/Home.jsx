@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import Navbar from '../components/Navbar'
-import { useFirebase } from '../context/firebase'
+import { useFirebase } from '../context/Firebase.jsx'
 import Card from '../components/Card';
 import { useNavigate } from 'react-router';
 

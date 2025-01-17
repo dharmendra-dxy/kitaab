@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFirebase } from '../context/firebase';
+import { useFirebase } from '../context/Firebase.jsx';
 import { useNavigate } from 'react-router';
 
 const Navbar = () => {
