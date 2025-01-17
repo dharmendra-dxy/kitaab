@@ -45,6 +45,14 @@ const Signup = () => {
             <div className='max-container h-full flex flex-col items-center justify-center max-w-lg'>
                 <div className='block lg:hidden'>
                     <h1 className='text-4xl font-bold mb-8 text-center'>Welome to Signup</h1>
+                    <p className='text-center mb-4'>
+                    Already have account ? 
+                    <span onClick={()=>navigate('/login')}
+                    className='text-blue-500 font-semibold'
+                    >
+                    {" "}Login
+                    </span> 
+                    </p>
                 </div>
                 <div className='flex flex-col items-center justify-center gap-6 shadow-lg shadow-black px-10 py-10 rounded-xl'>
                     <div className='flex flex-col gap-2 '>

@@ -15,11 +15,16 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [error, setError] = useState("");
+
     // handleSubmit:
     const handleSubmit = async (e) => {
-        console.log(email, password)
+        // console.log(email, password)
         e.preventDefault();
-        const data = await firebase.signinUserWithEmailAndPassword(email, password);
+        await firebase.signinUserWithEmailAndPassword(email, password)
+        .then()
+        .catch(e=> setError(e));
+
 
         setEmail('');
         setPassword('');
@@ -57,6 +62,14 @@ const Login = () => {
             <div className='max-container h-full flex flex-col items-center justify-center max-w-lg'>
                 <div className='block lg:hidden'>
                     <h1 className='text-4xl font-bold mb-8 text-center'>Welome to Login</h1>
+                    <p className='text-center mb-4'>
+                    Don't have account ? 
+                    <span onClick={()=>navigate('/signup')}
+                    className='text-blue-500 font-semibold'
+                    >
+                    {" "}Signup
+                    </span> 
+                    </p>
                 </div>
                 <div className='flex flex-col items-center justify-center gap-6 shadow-lg shadow-black px-10 py-10 rounded-xl'>
                     <div className='flex flex-col gap-2 '>
@@ -82,11 +95,18 @@ const Login = () => {
                     </div>
 
 
-                    <button className='text-white bg-red-500 w-full rounded-lg px-4 py-2 font-semibold hover:bg-red-700'
-                    onClick={handleSubmit}
-                    >
-                        Login
-                    </button>
+                    <div className='w-full'>
+                        <button className='text-white bg-red-500 w-full rounded-lg px-4 py-2 font-semibold hover:bg-red-700'
+                        onClick={handleSubmit}
+                        >
+                            Login
+                        </button>
+
+                        {error && <p className='text-red-600 text-sm font-semibold mt-2 text-center'>
+                            Invalid auth credentials
+                        </p>
+                        }
+                    </div>
 
                     <div className='text-gray-400'>
                         OR
