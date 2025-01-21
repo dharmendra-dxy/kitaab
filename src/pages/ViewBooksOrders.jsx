@@ -27,12 +27,16 @@ const ViewBooksOrders = () => {
       </div>
 
       <div className='flex flex-col justify-center items-center md:flex-row mt-6 md:flex-wrap'>
-        {orders.length==0 ? (<div className='text-lg font-semibold mt-10'>No Orders on this book</div>):(<></>)}
+        {orders.length==0 ? (<div className='text-lg font-semibold mt-10'>No Orders on this book</div>):(<div></div>)}
+        
       {
         orders.map((order) => {
           const data = order.data();
           return(
-            <div className='bg-gray-50 shadow-lg p-4 rounded-lg m-4 w-56'>
+            <div 
+            className='bg-gray-50 shadow-lg p-4 rounded-lg m-4 w-56'
+            key={data.id}
+            >
               <h3 className='text-md font-bold text-violet-500'>Customer details :</h3>
               {
                 data.displayName && <p>{data.displayName}</p>
